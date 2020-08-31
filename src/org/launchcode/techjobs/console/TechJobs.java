@@ -18,6 +18,7 @@ public class TechJobs {
         HashMap<String, String> columnChoices = new HashMap<>();
         columnChoices.put("core competency", "Skill");
         columnChoices.put("employer", "Employer");
+        columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
 
@@ -61,7 +62,8 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    //System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm, columnChoices));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -111,7 +113,13 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        //System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() < 1) {
+            System.out.println("No jobs found with search term provided.");
+            return;
+        }
+
+        System.out.println(someJobs.size());
 
         for (HashMap<String, String> someJob : someJobs) {
             //System.out.println("works");

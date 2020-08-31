@@ -84,6 +84,55 @@ public class JobData {
         return jobs;
     }
 
+
+    //
+    public static ArrayList<HashMap<String, String>> findByValue(String value, HashMap<String, String> choices) {
+
+        // load data, if not already loaded
+        loadData();
+
+        String[] choiceKeys = new String[choices.size()-1];
+        Boolean found = false;
+
+        // Put the choices in an ordered structure so we can
+        // associate an integer with each one
+        Integer i = 0;
+        for (String choiceKey : choices.keySet()) {
+            if (choiceKey != "all") {
+                choiceKeys[i] = choiceKey;
+                i++;
+            }
+        }
+//        System.out.println(choiceKeys[0]);
+//        System.out.println(choiceKeys[1]);
+//        System.out.println(choiceKeys[2]);
+//        System.out.println(choiceKeys[3]);
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+
+            do {
+
+                for (String choice : choiceKeys) {
+                    //System.out.println(choice);
+                    String aValue = row.get(choice);
+
+                    if (aValue.contains(value)) {
+                       jobs.add(row);
+                       found = true;
+                    }
+                }
+
+                found = true;
+
+            } while (!found);
+        }
+
+        return jobs;
+
+    }
+
     /**
      * Read in data from a CSV file and store it in a list
      */
