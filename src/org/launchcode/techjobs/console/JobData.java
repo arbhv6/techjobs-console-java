@@ -70,11 +70,15 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        //Make search case-insensitive
+        value = value.toLowerCase();
+
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            //Helps make search case-insensitive
+            String aValue = row.get(column).toLowerCase();
 
             if (aValue.contains(value)) {
                 jobs.add(row);
@@ -91,22 +95,29 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        String[] choiceKeys = new String[choices.size()-1];
+        String[] choiceKeys = new String[choices.size()];
         Boolean found = false;
+
+        //Make search case-insensitive
+        value = value.toLowerCase();
 
         // Put the choices in an ordered structure so we can
         // associate an integer with each one
-        Integer i = 0;
+        Integer i = 1;
+
+        choiceKeys[0] = "name";
         for (String choiceKey : choices.keySet()) {
             if (choiceKey != "all") {
                 choiceKeys[i] = choiceKey;
                 i++;
             }
         }
+
 //        System.out.println(choiceKeys[0]);
 //        System.out.println(choiceKeys[1]);
 //        System.out.println(choiceKeys[2]);
 //        System.out.println(choiceKeys[3]);
+//        System.out.println(choiceKeys[4]);
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
@@ -116,7 +127,9 @@ public class JobData {
 
                 for (String choice : choiceKeys) {
                     //System.out.println(choice);
-                    String aValue = row.get(choice);
+
+                    //Helps make search case-insensitive
+                    String aValue = row.get(choice).toLowerCase();
 
                     if (aValue.contains(value)) {
                        jobs.add(row);

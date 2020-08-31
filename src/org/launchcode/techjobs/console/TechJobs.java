@@ -115,11 +115,11 @@ public class TechJobs {
 
         //System.out.println("printJobs is not implemented yet");
         if (someJobs.size() < 1) {
-            System.out.println("No jobs found with search term provided.");
+            System.out.println("No results.");
             return;
         }
 
-        System.out.println(someJobs.size());
+        //System.out.println(someJobs.size());
 
         for (HashMap<String, String> someJob : someJobs) {
             //System.out.println("works");
@@ -131,7 +131,7 @@ public class TechJobs {
 
             }
 
-            System.out.println("*****");
+            System.out.println("*****\n");
 
         }
     }
